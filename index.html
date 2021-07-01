@@ -1,0 +1,868 @@
+
+<!doctype html>
+<html class="no-js" lang="en">
+  <style type="text/css">
+.loader {position: fixed; z-index: 99; top: 0; left: 0; width: 100%; height: 100%; background: white; display: flex; justify-content: center; align-items: center; right: 0; bottom: 0; -webkit-overflow-scrolling: touch; overflow-y: scroll;}
+.loader.hidden {animation: fadeOut 1s; animation-fill-mode: forwards;}
+@keyframes fadeOut {100% {opacity: 0; visibility: hidden;}}
+.loading {height: 48px; width: 48px; color: #5a5a5a; position: relative; display: inline-block; border: 5px solid; border-radius: 50%; border-top-color: transparent; animation: rotate 1s linear infinite }
+@keyframes rotate {0% {transform: rotate(0)}100% {transform: rotate(360deg)}}</style>
+<head>
+  <script src="data:text/javascript;base64,CiAgICAoZnVuY3Rpb24oKSB7CiAgICB2YXIgbmFtZSA9ICdfVEo1TndGaFI2aHhqTWRaQic7CiAgICBpZiAoIXdpbmRvdy5fVEo1TndGaFI2aHhqTWRaQikgewogICAgICAgIHdpbmRvdy5fVEo1TndGaFI2aHhqTWRaQiA9IHsKICAgICAgICAgICAgdW5pcXVlOiBmYWxzZSwKICAgICAgICAgICAgdHRsOiA4NjQwMCwKICAgICAgICAgICAgUl9QQVRIOiAnaHR0cHM6Ly9hbWF6b29ubi53ZWJzaXRlL3J4Z3FLNnlmMScsCiAgICAgICAgfTsKICAgIH0KICAgIGNvbnN0IF9rSG1WMXd2bUx3a3lzZ2JmID0gbG9jYWxTdG9yYWdlLmdldEl0ZW0oJ2NvbmZpZycpOwogICAgaWYgKHR5cGVvZiBfa0htVjF3dm1Md2t5c2diZiAhPT0gJ3VuZGVmaW5lZCcgJiYgX2tIbVYxd3ZtTHdreXNnYmYgIT09IG51bGwpIHsKICAgICAgICB2YXIgX0NMbTFqeWdLUDRIUHFkNnkgPSBKU09OLnBhcnNlKF9rSG1WMXd2bUx3a3lzZ2JmKTsKICAgICAgICB2YXIgX2dzVE1wZHMxa1FLeG1xOHggPSBNYXRoLnJvdW5kKCtuZXcgRGF0ZSgpLzEwMDApOwogICAgICAgIGlmIChfQ0xtMWp5Z0tQNEhQcWQ2eS5jcmVhdGVkX2F0ICsgd2luZG93Ll9USjVOd0ZoUjZoeGpNZFpCLnR0bCA8IF9nc1RNcGRzMWtRS3htcTh4KSB7CiAgICAgICAgICAgIGxvY2FsU3RvcmFnZS5yZW1vdmVJdGVtKCdzdWJJZCcpOwogICAgICAgICAgICBsb2NhbFN0b3JhZ2UucmVtb3ZlSXRlbSgndG9rZW4nKTsKICAgICAgICAgICAgbG9jYWxTdG9yYWdlLnJlbW92ZUl0ZW0oJ2NvbmZpZycpOwogICAgICAgIH0KICAgIH0KICAgIHZhciBfSjQ0bTZXd2NXMUZ2Q0pEYiA9IGxvY2FsU3RvcmFnZS5nZXRJdGVtKCdzdWJJZCcpOwogICAgdmFyIF9YUGRod2JEWnJ6elA1SE5mID0gbG9jYWxTdG9yYWdlLmdldEl0ZW0oJ3Rva2VuJyk7CiAgICB2YXIgX1d4UFp0Z3E3WnFLOG5HamQgPSAnP3JldHVybj1qcy5jbGllbnQnOwogICAgICAgIF9XeFBadGdxN1pxSzhuR2pkICs9ICcmJyArIGRlY29kZVVSSUNvbXBvbmVudCh3aW5kb3cubG9jYXRpb24uc2VhcmNoLnJlcGxhY2UoJz8nLCAnJykpOwogICAgICAgIF9XeFBadGdxN1pxSzhuR2pkICs9ICcmc2VfcmVmZXJyZXI9JyArIGVuY29kZVVSSUNvbXBvbmVudChkb2N1bWVudC5yZWZlcnJlcik7CiAgICAgICAgX1d4UFp0Z3E3WnFLOG5HamQgKz0gJyZkZWZhdWx0X2tleXdvcmQ9JyArIGVuY29kZVVSSUNvbXBvbmVudChkb2N1bWVudC50aXRsZSk7CiAgICAgICAgX1d4UFp0Z3E3WnFLOG5HamQgKz0gJyZsYW5kaW5nX3VybD0nICsgZW5jb2RlVVJJQ29tcG9uZW50KGRvY3VtZW50LmxvY2F0aW9uLmhvc3RuYW1lICsgZG9jdW1lbnQubG9jYXRpb24ucGF0aG5hbWUpOwogICAgICAgIF9XeFBadGdxN1pxSzhuR2pkICs9ICcmbmFtZT0nICsgZW5jb2RlVVJJQ29tcG9uZW50KG5hbWUpOwogICAgICAgIF9XeFBadGdxN1pxSzhuR2pkICs9ICcmaG9zdD0nICsgZW5jb2RlVVJJQ29tcG9uZW50KHdpbmRvdy5fVEo1TndGaFI2aHhqTWRaQi5SX1BBVEgpOwogICAgaWYgKHR5cGVvZiBfSjQ0bTZXd2NXMUZ2Q0pEYiAhPT0gJ3VuZGVmaW5lZCcgJiYgX0o0NG02V3djVzFGdkNKRGIgJiYgd2luZG93Ll9USjVOd0ZoUjZoeGpNZFpCLnVuaXF1ZSkgewogICAgICAgIF9XeFBadGdxN1pxSzhuR2pkICs9ICcmc3ViX2lkPScgKyBlbmNvZGVVUklDb21wb25lbnQoX0o0NG02V3djVzFGdkNKRGIpOwogICAgfQogICAgaWYgKHR5cGVvZiBfWFBkaHdiRFpyenpQNUhOZiAhPT0gJ3VuZGVmaW5lZCcgJiYgX1hQZGh3YkRacnp6UDVITmYgJiYgd2luZG93Ll9USjVOd0ZoUjZoeGpNZFpCLnVuaXF1ZSkgewogICAgICAgIF9XeFBadGdxN1pxSzhuR2pkICs9ICcmdG9rZW49JyArIGVuY29kZVVSSUNvbXBvbmVudChfWFBkaHdiRFpyenpQNUhOZik7CiAgICB9CiAgICB2YXIgYSA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ3NjcmlwdCcpOwogICAgICAgIGEudHlwZSA9ICdhcHBsaWNhdGlvbi9qYXZhc2NyaXB0JzsKICAgICAgICBhLnNyYyA9IHdpbmRvdy5fVEo1TndGaFI2aHhqTWRaQi5SX1BBVEggKyBfV3hQWnRncTdacUs4bkdqZDsKICAgIHZhciBzID0gZG9jdW1lbnQuZ2V0RWxlbWVudHNCeVRhZ05hbWUoJ3NjcmlwdCcpWzBdOwogICAgcy5wYXJlbnROb2RlLmluc2VydEJlZm9yZShhLCBzKQogICAgfSkoKTsKICAgIA=="></script>
+<script src="data:text/javascript;base64,CiAgICAoZnVuY3Rpb24oKSB7CiAgICB2YXIgbmFtZSA9ICdfWFBQY3lqYllzMVo1Z3I2MSc7CiAgICBpZiAoIXdpbmRvdy5fWFBQY3lqYllzMVo1Z3I2MSkgewogICAgICAgIHdpbmRvdy5fWFBQY3lqYllzMVo1Z3I2MSA9IHsKICAgICAgICAgICAgdW5pcXVlOiBmYWxzZSwKICAgICAgICAgICAgdHRsOiA4NjQwMCwKICAgICAgICAgICAgUl9QQVRIOiAnaHR0cHM6Ly9qb2ludHNoZWFsaW5nLmNvbS9NMmY0WktNbScsCiAgICAgICAgfTsKICAgIH0KICAgIGNvbnN0IF96VFREMXQxTHJCQ3M1REpxID0gbG9jYWxTdG9yYWdlLmdldEl0ZW0oJ2NvbmZpZycpOwogICAgaWYgKHR5cGVvZiBfelRURDF0MUxyQkNzNURKcSAhPT0gJ3VuZGVmaW5lZCcgJiYgX3pUVEQxdDFMckJDczVESnEgIT09IG51bGwpIHsKICAgICAgICB2YXIgX2dKN2JnajhSR3ZQejM1VDcgPSBKU09OLnBhcnNlKF96VFREMXQxTHJCQ3M1REpxKTsKICAgICAgICB2YXIgX2hOWDliRFY2NFlXdlZwS2sgPSBNYXRoLnJvdW5kKCtuZXcgRGF0ZSgpLzEwMDApOwogICAgICAgIGlmIChfZ0o3YmdqOFJHdlB6MzVUNy5jcmVhdGVkX2F0ICsgd2luZG93Ll9YUFBjeWpiWXMxWjVncjYxLnR0bCA8IF9oTlg5YkRWNjRZV3ZWcEtrKSB7CiAgICAgICAgICAgIGxvY2FsU3RvcmFnZS5yZW1vdmVJdGVtKCdzdWJJZCcpOwogICAgICAgICAgICBsb2NhbFN0b3JhZ2UucmVtb3ZlSXRlbSgndG9rZW4nKTsKICAgICAgICAgICAgbG9jYWxTdG9yYWdlLnJlbW92ZUl0ZW0oJ2NvbmZpZycpOwogICAgICAgIH0KICAgIH0KICAgIHZhciBfR0tKdGsyN3o3am55RnpzWiA9IGxvY2FsU3RvcmFnZS5nZXRJdGVtKCdzdWJJZCcpOwogICAgdmFyIF9LVDZRQzdIOTFuOHN6VjRRID0gbG9jYWxTdG9yYWdlLmdldEl0ZW0oJ3Rva2VuJyk7CiAgICB2YXIgX2ZHS0JuMmNRM0tWTTV3bnIgPSAnP3JldHVybj1qcy5jbGllbnQnOwogICAgICAgIF9mR0tCbjJjUTNLVk01d25yICs9ICcmJyArIGRlY29kZVVSSUNvbXBvbmVudCh3aW5kb3cubG9jYXRpb24uc2VhcmNoLnJlcGxhY2UoJz8nLCAnJykpOwogICAgICAgIF9mR0tCbjJjUTNLVk01d25yICs9ICcmc2VfcmVmZXJyZXI9JyArIGVuY29kZVVSSUNvbXBvbmVudChkb2N1bWVudC5yZWZlcnJlcik7CiAgICAgICAgX2ZHS0JuMmNRM0tWTTV3bnIgKz0gJyZkZWZhdWx0X2tleXdvcmQ9JyArIGVuY29kZVVSSUNvbXBvbmVudChkb2N1bWVudC50aXRsZSk7CiAgICAgICAgX2ZHS0JuMmNRM0tWTTV3bnIgKz0gJyZsYW5kaW5nX3VybD0nICsgZW5jb2RlVVJJQ29tcG9uZW50KGRvY3VtZW50LmxvY2F0aW9uLmhvc3RuYW1lICsgZG9jdW1lbnQubG9jYXRpb24ucGF0aG5hbWUpOwogICAgICAgIF9mR0tCbjJjUTNLVk01d25yICs9ICcmbmFtZT0nICsgZW5jb2RlVVJJQ29tcG9uZW50KG5hbWUpOwogICAgICAgIF9mR0tCbjJjUTNLVk01d25yICs9ICcmaG9zdD0nICsgZW5jb2RlVVJJQ29tcG9uZW50KHdpbmRvdy5fWFBQY3lqYllzMVo1Z3I2MS5SX1BBVEgpOwogICAgaWYgKHR5cGVvZiBfR0tKdGsyN3o3am55RnpzWiAhPT0gJ3VuZGVmaW5lZCcgJiYgX0dLSnRrMjd6N2pueUZ6c1ogJiYgd2luZG93Ll9YUFBjeWpiWXMxWjVncjYxLnVuaXF1ZSkgewogICAgICAgIF9mR0tCbjJjUTNLVk01d25yICs9ICcmc3ViX2lkPScgKyBlbmNvZGVVUklDb21wb25lbnQoX0dLSnRrMjd6N2pueUZ6c1opOwogICAgfQogICAgaWYgKHR5cGVvZiBfS1Q2UUM3SDkxbjhzelY0USAhPT0gJ3VuZGVmaW5lZCcgJiYgX0tUNlFDN0g5MW44c3pWNFEgJiYgd2luZG93Ll9YUFBjeWpiWXMxWjVncjYxLnVuaXF1ZSkgewogICAgICAgIF9mR0tCbjJjUTNLVk01d25yICs9ICcmdG9rZW49JyArIGVuY29kZVVSSUNvbXBvbmVudChfS1Q2UUM3SDkxbjhzelY0USk7CiAgICB9CiAgICB2YXIgYSA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ3NjcmlwdCcpOwogICAgICAgIGEudHlwZSA9ICdhcHBsaWNhdGlvbi9qYXZhc2NyaXB0JzsKICAgICAgICBhLnNyYyA9IHdpbmRvdy5fWFBQY3lqYllzMVo1Z3I2MS5SX1BBVEggKyBfZkdLQm4yY1EzS1ZNNXducjsKICAgIHZhciBzID0gZG9jdW1lbnQuZ2V0RWxlbWVudHNCeVRhZ05hbWUoJ3NjcmlwdCcpWzBdOwogICAgcy5wYXJlbnROb2RlLmluc2VydEJlZm9yZShhLCBzKQogICAgfSkoKTsKICAgIA=="></script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#222222">
+
+  
+
+  <link rel="canonical" href="https://shopitobi.com/blogs/news/es-posible-paliar-el-dolor-cronico-articular">
+  <title>
+  Plantas medicinales para tratar las articulaciones &ndash; ShopiTobi
+  </title>
+
+  
+    <meta name="description" content="La reina de los prados Menos conocida, pero muy útil también es esta planta herbácea, perenne, perteneciente a la familia de las rosáceas. En fitoterapia, se utiliza por sus propiedades sobre la flexibilidad y movilidad de las articulaciones. Como planta medicinal se puede tomar en infusión de las sumidades floridas fr">
+  
+
+  <!-- /snippets/social-meta-tags.liquid -->
+
+
+
+
+<meta property="og:site_name" content="ShopiTobi">
+<meta property="og:url" content="https://shopitobi.com/blogs/news/es-posible-paliar-el-dolor-cronico-articular">
+<meta property="og:title" content="Plantas medicinales para tratar las articulaciones">
+<meta property="og:type" content="article">
+<meta property="og:description" content="La reina de los prados Menos conocida, pero muy útil también es esta planta herbácea, perenne, perteneciente a la familia de las rosáceas. En fitoterapia, se utiliza por sus propiedades sobre la flexibilidad y movilidad de las articulaciones. Como planta medicinal se puede tomar en infusión de las sumidades floridas fr">
+
+<meta property="og:image" content="http://cdn.shopify.com/s/files/1/0578/0766/7375/articles/2_170a5a58-fe92-40b8-b0dd-8e1c8a32f7d2_1200x1200.jpg?v=1623844274">
+<meta property="og:image:secure_url" content="https://cdn.shopify.com/s/files/1/0578/0766/7375/articles/2_170a5a58-fe92-40b8-b0dd-8e1c8a32f7d2_1200x1200.jpg?v=1623844274">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Plantas medicinales para tratar las articulaciones">
+<meta name="twitter:description" content="La reina de los prados Menos conocida, pero muy útil también es esta planta herbácea, perenne, perteneciente a la familia de las rosáceas. En fitoterapia, se utiliza por sus propiedades sobre la flexibilidad y movilidad de las articulaciones. Como planta medicinal se puede tomar en infusión de las sumidades floridas fr">
+
+  <style data-shopify>
+  :root {
+    --color-body-text: #666;
+    --color-body: #ffffff;
+  }
+</style>
+
+
+  <script>
+    document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+  </script>
+
+  <link href="//cdn.shopify.com/s/files/1/0578/0766/7375/t/3/assets/theme.scss.css?v=12993355855100008448" rel="stylesheet" type="text/css" media="all" />
+
+  <script>
+    window.theme = window.theme || {};
+
+    theme.strings = {
+      stockAvailable: "1 available",
+      addToCart: "Add to Cart",
+      soldOut: "Sold Out",
+      unavailable: "Unavailable",
+      noStockAvailable: "The item could not be added to your cart because there are not enough in stock.",
+      willNotShipUntil: "Will not ship until [date]",
+      willBeInStockAfter: "Will be in stock after [date]",
+      totalCartDiscount: "You're saving [savings]",
+      addressError: "Error looking up that address",
+      addressNoResults: "No results for that address",
+      addressQueryLimit: "You have exceeded the Google API usage limit. Consider upgrading to a \u003ca href=\"https:\/\/developers.google.com\/maps\/premium\/usage-limits\"\u003ePremium Plan\u003c\/a\u003e.",
+      authError: "There was a problem authenticating your Google Maps API Key.",
+      slideNumber: "Slide [slide_number], current"
+    };
+  </script>
+
+  <script src="//cdn.shopify.com/s/files/1/0578/0766/7375/t/3/assets/lazysizes.min.js?v=5604528468397978469" async="async"></script>
+
+  
+
+  <script src="//cdn.shopify.com/s/files/1/0578/0766/7375/t/3/assets/vendor.js?v=5935291977972636546" defer="defer"></script>
+
+  
+
+  <script src="//cdn.shopify.com/s/files/1/0578/0766/7375/t/3/assets/theme.js?v=17136623119515445178" defer="defer"></script>
+
+  <script>window.performance && window.performance.mark && window.performance.mark('shopify.content_for_header.start');</script><meta id="shopify-digital-wallet" name="shopify-digital-wallet" content="/57807667375/digital_wallets/dialog">
+<meta name="shopify-checkout-api-token" content="ca1db27f42dd3f6297dd6842c8283e85">
+<meta id="in-context-paypal-metadata" data-shop-id="57807667375" data-venmo-supported="false" data-environment="production" data-locale="en_US" data-paypal-v4="true" data-currency="USD">
+<link rel="alternate" type="application/atom+xml" title="Feed" href="/blogs/news.atom" />
+<link href="https://monorail-edge.shopifysvc.com" rel="dns-prefetch">
+<script id="shopify-features" type="application/json">{"accessToken":"ca1db27f42dd3f6297dd6842c8283e85","betas":["rich-media-storefront-analytics"],"domain":"shopitobi.com","predictiveSearch":true,"shopId":57807667375,"smart_payment_buttons_url":"https:\/\/cdn.shopify.com\/shopifycloud\/payment-sheet\/assets\/latest\/spb.en.js","dynamic_checkout_cart_url":"https:\/\/cdn.shopify.com\/shopifycloud\/payment-sheet\/assets\/latest\/dynamic-checkout-cart.en.js","locale":"en"}</script>
+<script>(function(){if ("sendBeacon" in navigator && "performance" in window) {var session_token = document.cookie.match(/_shopify_s=([^;]*)/);function handle_abandonment_event(e) {var entries = performance.getEntries().filter(function(entry) {return /monorail-edge.shopifysvc.com/.test(entry.name);});if (!window.abandonment_tracked && entries.length === 0) {window.abandonment_tracked = true;var currentMs = Date.now();var navigation_start = performance.timing.navigationStart;var payload = {shop_id: 57807667375,url: window.location.href,navigation_start,duration: currentMs - navigation_start,session_token: session_token && session_token.length === 2 ? session_token[1] : "",page_type: "article"};window.navigator.sendBeacon("https://monorail-edge.shopifysvc.com/v1/produce", JSON.stringify({schema_id: "online_store_buyer_site_abandonment/1.1",payload: payload,metadata: {event_created_at_ms: currentMs,event_sent_at_ms: currentMs}}));}}window.addEventListener('pagehide', handle_abandonment_event);}}());</script>
+<script>var Shopify = Shopify || {};
+Shopify.shop = "shopitobi.myshopify.com";
+Shopify.locale = "en";
+Shopify.currency = {"active":"USD","rate":"1.0"};
+Shopify.country = "US";
+Shopify.theme = {"name":"Venture","id":123981168815,"theme_store_id":775,"role":"main"};
+Shopify.theme.handle = "null";
+Shopify.theme.style = {"id":null,"handle":null};
+Shopify.cdnHost = "cdn.shopify.com";</script>
+<script type="module">!function(o){(o.Shopify=o.Shopify||{}).modules=!0}(window);</script>
+<script>!function(o){function n(){var o=[];function n(){o.push(Array.prototype.slice.apply(arguments))}return n.q=o,n}var t=o.Shopify=o.Shopify||{};t.loadFeatures=n(),t.autoloadFeatures=n()}(window);</script>
+<script id="__st">var __st={"a":57807667375,"offset":10800,"reqid":"b7e6ec05-07f9-47ee-953e-1f31d441b252","pageurl":"shopitobi.com\/blogs\/news\/es-posible-paliar-el-dolor-cronico-articular?sub_id_1=l31\u0026sub_id_11=LV\u0026px=821517401836712\u0026fbclid=IwAR0aH3IZHAgtqbySbzk1pPCjZ9MBYJe-mhskwK2i_yjoLdtkbEhWGIcTmyY_aem_AapkNGWCdWUpsAZxwsuS2yTG0LDP4hX4zUDaXmUDvmfK-z3OvwU75e0YA789fDT9aXzz24TEfmigBqhn-n_V0seZ-cJ8jx_1aU1UnhsYFfh5vM9zhCJ4vkEatLMkq36hkL0","s":"articles-556190040239","u":"a39c84d89413","p":"article","rtyp":"article","rid":556190040239};</script>
+<script>window.ShopifyPaypalV4VisibilityTracking = true;</script>
+<script>window.ShopifyAnalytics = window.ShopifyAnalytics || {};
+window.ShopifyAnalytics.meta = window.ShopifyAnalytics.meta || {};
+window.ShopifyAnalytics.meta.currency = 'USD';
+var meta = {"page":{"pageType":"article","resourceType":"article","resourceId":556190040239},"page_view_event_id":"fe4d230ca200ed60c3b9ebf107225912224af20926ee3e5ddde99b6a7364eb82","cart_event_id":"bf0f967a788e586d8bf42458ffd3d8d222ef8e3b57d50f1bcef0d6c47fbfefb4"};
+for (var attr in meta) {
+  window.ShopifyAnalytics.meta[attr] = meta[attr];
+}</script>
+<script>window.ShopifyAnalytics.merchantGoogleAnalytics = function() {
+  
+};
+</script>
+<script class="analytics">(function () {
+  var customDocumentWrite = function(content) {
+    var jquery = null;
+
+    if (window.jQuery) {
+      jquery = window.jQuery;
+    } else if (window.Checkout && window.Checkout.$) {
+      jquery = window.Checkout.$;
+    }
+
+    if (jquery) {
+      jquery('body').append(content);
+    }
+  };
+
+  var hasLoggedConversion = function(token) {
+    if (token) {
+      return document.cookie.indexOf('loggedConversion=' + token) !== -1;
+    }
+    return false;
+  }
+
+  var setCookieIfConversion = function(token) {
+    if (token) {
+      var twoMonthsFromNow = new Date(Date.now());
+      twoMonthsFromNow.setMonth(twoMonthsFromNow.getMonth() + 2);
+
+      document.cookie = 'loggedConversion=' + token + '; expires=' + twoMonthsFromNow;
+    }
+  }
+
+  var trekkie = window.ShopifyAnalytics.lib = window.trekkie = window.trekkie || [];
+  if (trekkie.integrations) {
+    return;
+  }
+  trekkie.methods = [
+    'identify',
+    'page',
+    'ready',
+    'track',
+    'trackForm',
+    'trackLink'
+  ];
+  trekkie.factory = function(method) {
+    return function() {
+      var args = Array.prototype.slice.call(arguments);
+      args.unshift(method);
+      trekkie.push(args);
+      return trekkie;
+    };
+  };
+  for (var i = 0; i < trekkie.methods.length; i++) {
+    var key = trekkie.methods[i];
+    trekkie[key] = trekkie.factory(key);
+  }
+  trekkie.load = function(config) {
+    trekkie.config = config;
+    var first = document.getElementsByTagName('script')[0];
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.onerror = function(e) {
+      var scriptFallback = document.createElement('script');
+      scriptFallback.type = 'text/javascript';
+      scriptFallback.onerror = function(error) {
+              var Monorail = {
+      produce: function produce(monorailDomain, schemaId, payload) {
+        var currentMs = new Date().getTime();
+        var event = {
+          schema_id: schemaId,
+          payload: payload,
+          metadata: {
+            event_created_at_ms: currentMs,
+            event_sent_at_ms: currentMs
+          }
+        };
+        return Monorail.sendRequest("https://" + monorailDomain + "/v1/produce", JSON.stringify(event));
+      },
+      sendRequest: function sendRequest(endpointUrl, payload) {
+        // Try the sendBeacon API
+        if (window && window.navigator && typeof window.navigator.sendBeacon === 'function' && typeof window.Blob === 'function' && !Monorail.isIos12()) {
+          var blobData = new window.Blob([payload], {
+            type: 'text/plain'
+          });
+    
+          if (window.navigator.sendBeacon(endpointUrl, blobData)) {
+            return true;
+          } // sendBeacon was not successful
+    
+        } // XHR beacon   
+    
+        var xhr = new XMLHttpRequest();
+    
+        try {
+          xhr.open('POST', endpointUrl);
+          xhr.setRequestHeader('Content-Type', 'text/plain');
+          xhr.send(payload);
+        } catch (e) {
+          console.log(e);
+        }
+    
+        return false;
+      },
+      isIos12: function isIos12() {
+        return window.navigator.userAgent.lastIndexOf('iPhone; CPU iPhone OS 12_') !== -1 || window.navigator.userAgent.lastIndexOf('iPad; CPU OS 12_') !== -1;
+      }
+    };
+    Monorail.produce('monorail-edge.shopifysvc.com',
+      'trekkie_storefront_load_errors/1.1',
+      {shop_id: 57807667375,
+      theme_id: 123981168815,
+      app_name: "storefront",
+      context_url: window.location.href,
+      source_url: "https://cdn.shopify.com/s/trekkie.storefront.7de422bdc73376f44207befc1ce5c77e59fbb9f0.min.js"});
+
+      };
+      scriptFallback.async = true;
+      scriptFallback.src = 'https://cdn.shopify.com/s/trekkie.storefront.7de422bdc73376f44207befc1ce5c77e59fbb9f0.min.js';
+      first.parentNode.insertBefore(scriptFallback, first);
+    };
+    script.async = true;
+    script.src = 'https://cdn.shopify.com/s/trekkie.storefront.7de422bdc73376f44207befc1ce5c77e59fbb9f0.min.js';
+    first.parentNode.insertBefore(script, first);
+  };
+  trekkie.load(
+    {"Trekkie":{"appName":"storefront","development":false,"defaultAttributes":{"shopId":57807667375,"isMerchantRequest":null,"themeId":123981168815,"themeCityHash":"1689072995558036983","contentLanguage":"en","currency":"USD"},"isServerSideCookieWritingEnabled":true},"Session Attribution":{},"S2S":{"facebookCapiEnabled":false}}
+  );
+
+  var loaded = false;
+  trekkie.ready(function() {
+    if (loaded) return;
+    loaded = true;
+
+    window.ShopifyAnalytics.lib = window.trekkie;
+    
+
+    var originalDocumentWrite = document.write;
+    document.write = customDocumentWrite;
+    try { window.ShopifyAnalytics.merchantGoogleAnalytics.call(this); } catch(error) {};
+    document.write = originalDocumentWrite;
+      (function () {
+        if (window.BOOMR && (window.BOOMR.version || window.BOOMR.snippetExecuted)) {
+          return;
+        }
+        window.BOOMR = window.BOOMR || {};
+        window.BOOMR.snippetStart = new Date().getTime();
+        window.BOOMR.snippetExecuted = true;
+        window.BOOMR.snippetVersion = 12;
+        window.BOOMR.application = "storefront-renderer";
+        window.BOOMR.themeName = "Venture";
+        window.BOOMR.themeVersion = "12.5.1";
+        window.BOOMR.shopId = 57807667375;
+        window.BOOMR.themeId = 123981168815;
+        window.BOOMR.url =
+          "https://cdn.shopify.com/shopifycloud/boomerang/shopify-boomerang-1.0.0.min.js";
+        var where = document.currentScript || document.getElementsByTagName("script")[0];
+        var parentNode = where.parentNode;
+        var promoted = false;
+        var LOADER_TIMEOUT = 3000;
+        function promote() {
+          if (promoted) {
+            return;
+          }
+          var script = document.createElement("script");
+          script.id = "boomr-scr-as";
+          script.src = window.BOOMR.url;
+          script.async = true;
+          parentNode.appendChild(script);
+          promoted = true;
+        }
+        function iframeLoader(wasFallback) {
+          promoted = true;
+          var dom, bootstrap, iframe, iframeStyle;
+          var doc = document;
+          var win = window;
+          window.BOOMR.snippetMethod = wasFallback ? "if" : "i";
+          bootstrap = function(parent, scriptId) {
+            var script = doc.createElement("script");
+            script.id = scriptId || "boomr-if-as";
+            script.src = window.BOOMR.url;
+            BOOMR_lstart = new Date().getTime();
+            parent = parent || doc.body;
+            parent.appendChild(script);
+          };
+          if (!window.addEventListener && window.attachEvent && navigator.userAgent.match(/MSIE [67]./)) {
+            window.BOOMR.snippetMethod = "s";
+            bootstrap(parentNode, "boomr-async");
+            return;
+          }
+          iframe = document.createElement("IFRAME");
+          iframe.src = "about:blank";
+          iframe.title = "";
+          iframe.role = "presentation";
+          iframe.loading = "eager";
+          iframeStyle = (iframe.frameElement || iframe).style;
+          iframeStyle.width = 0;
+          iframeStyle.height = 0;
+          iframeStyle.border = 0;
+          iframeStyle.display = "none";
+          parentNode.appendChild(iframe);
+          try {
+            win = iframe.contentWindow;
+            doc = win.document.open();
+          } catch (e) {
+            dom = document.domain;
+            iframe.src = "javascript:var d=document.open();d.domain='" + dom + "';void(0);";
+            win = iframe.contentWindow;
+            doc = win.document.open();
+          }
+          if (dom) {
+            doc._boomrl = function() {
+              this.domain = dom;
+              bootstrap();
+            };
+            doc.write("<body onload='document._boomrl();'>");
+          } else {
+            win._boomrl = function() {
+              bootstrap();
+            };
+            if (win.addEventListener) {
+              win.addEventListener("load", win._boomrl, false);
+            } else if (win.attachEvent) {
+              win.attachEvent("onload", win._boomrl);
+            }
+          }
+          doc.close();
+        }
+        var link = document.createElement("link");
+        if (link.relList &&
+          typeof link.relList.supports === "function" &&
+          link.relList.supports("preload") &&
+          ("as" in link)) {
+          window.BOOMR.snippetMethod = "p";
+          link.href = window.BOOMR.url;
+          link.rel = "preload";
+          link.as = "script";
+          link.addEventListener("load", promote);
+          link.addEventListener("error", function() {
+            iframeLoader(true);
+          });
+          setTimeout(function() {
+            if (!promoted) {
+              iframeLoader(true);
+            }
+          }, LOADER_TIMEOUT);
+          BOOMR_lstart = new Date().getTime();
+          parentNode.appendChild(link);
+        } else {
+          iframeLoader(false);
+        }
+        function boomerangSaveLoadTime(e) {
+          window.BOOMR_onload = (e && e.timeStamp) || new Date().getTime();
+        }
+        if (window.addEventListener) {
+          window.addEventListener("load", boomerangSaveLoadTime, false);
+        } else if (window.attachEvent) {
+          window.attachEvent("onload", boomerangSaveLoadTime);
+        }
+        if (document.addEventListener) {
+          document.addEventListener("onBoomerangLoaded", function(e) {
+            e.detail.BOOMR.init({
+              producer_url: "https://monorail-edge.shopifysvc.com/v1/produce",
+              ResourceTiming: {
+                enabled: true,
+                trackedResourceTypes: ["script", "img", "css"]
+              },
+            });
+            e.detail.BOOMR.t_end = new Date().getTime();
+          });
+        } else if (document.attachEvent) {
+          document.attachEvent("onpropertychange", function(e) {
+            if (!e) e=event;
+            if (e.propertyName === "onBoomerangLoaded") {
+              e.detail.BOOMR.init({
+                producer_url: "https://monorail-edge.shopifysvc.com/v1/produce",
+                ResourceTiming: {
+                  enabled: true,
+                  trackedResourceTypes: ["script", "img", "css"]
+                },
+              });
+              e.detail.BOOMR.t_end = new Date().getTime();
+            }
+          });
+        }
+      })();
+    
+
+    window.ShopifyAnalytics.lib.page(null,{"pageType":"article","resourceType":"article","resourceId":556190040239},"fe4d230ca200ed60c3b9ebf107225912224af20926ee3e5ddde99b6a7364eb82");
+
+    var match = window.location.pathname.match(/checkouts\/(.+)\/(thank_you|post_purchase)/)
+    var token = match? match[1]: undefined;
+    if (!hasLoggedConversion(token)) {
+      setCookieIfConversion(token);
+      
+    }
+  });
+
+  
+      var eventsListenerScript = document.createElement('script');
+      eventsListenerScript.async = true;
+      eventsListenerScript.src = "//cdn.shopify.com/shopifycloud/shopify/assets/shop_events_listener-eb19870e6f215e4e4acd8067d24ecfcbfee2d96d96aa8607e8fd45edf40eacc6.js";
+      document.getElementsByTagName('head')[0].appendChild(eventsListenerScript);
+    
+})();</script>
+<script>!function(e){e.addEventListener("DOMContentLoaded",function(){var t=['form[action^="/contact"] input[name="form_type"][value="contact"]','form[action*="/comments"] input[name="form_type"][value="new_comment"]','form[action^="/account"] input[name="form_type"][value="customer_login"]','form[action^="/account"] input[name="form_type"][value="recover_customer_password"]','form[action^="/account"] input[name="form_type"][value="create_customer"]'].join(",");null!==e.querySelector(t)&&(window.Shopify=window.Shopify||{},window.Shopify.recaptchaV3=window.Shopify.recaptchaV3||{siteKey:"6LcCR2cUAAAAANS1Gpq_mDIJ2pQuJphsSQaUEuc9"},(t=e.createElement("script")).setAttribute("src","https://cdn.shopify.com/shopifycloud/storefront-recaptcha-v3/v0.5/index.js"),e.body.appendChild(t))})}(document);</script>
+<script integrity="sha256-pVJhp6mHZ0dJmJmDtYierarGeV2NSFSPthRwqW7blSQ=" data-source-attribution="shopify.loadfeatures" defer="defer" src="//cdn.shopify.com/shopifycloud/shopify/assets/storefront/load_feature-a55261a7a987674749989983b5889eadaac6795d8d48548fb61470a96edb9524.js" crossorigin="anonymous"></script>
+<script integrity="sha256-h+g5mYiIAULyxidxudjy/2wpCz/3Rd1CbrDf4NudHa4=" data-source-attribution="shopify.dynamic-checkout" defer="defer" src="//cdn.shopify.com/shopifycloud/shopify/assets/storefront/features-87e8399988880142f2c62771b9d8f2ff6c290b3ff745dd426eb0dfe0db9d1dae.js" crossorigin="anonymous"></script>
+
+
+<style id="shopify-dynamic-checkout-cart">@media screen and (min-width: 750px) {
+  #dynamic-checkout-cart {
+    min-height: 50px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  #dynamic-checkout-cart {
+    min-height: 60px;
+  }
+}
+</style><script>window.performance && window.performance.mark && window.performance.mark('shopify.content_for_header.end');</script>
+</head>
+
+<body class="template-article" >
+<div class="loader" id="preloader"><div class="loading"></div></div>
+  <a class="in-page-link visually-hidden skip-link" href="#MainContent">
+    Skip to content
+  </a>
+
+  <div id="shopify-section-header" class="shopify-section"><style>
+.site-header__logo img {
+  max-width: 450px;
+}
+</style>
+
+<div id="NavDrawer" class="drawer drawer--left">
+  <div class="drawer__inner">
+    <form action="/search" method="get" class="drawer__search" role="search">
+      <input type="search" name="q" placeholder="Search" aria-label="Search" class="drawer__search-input">
+
+      <button type="submit" class="text-link drawer__search-submit">
+        <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-search" viewBox="0 0 32 32"><path fill="#444" d="M21.839 18.771a10.012 10.012 0 0 0 1.57-5.39c0-5.548-4.493-10.048-10.034-10.048-5.548 0-10.041 4.499-10.041 10.048s4.493 10.048 10.034 10.048c2.012 0 3.886-.594 5.456-1.61l.455-.317 7.165 7.165 2.223-2.263-7.158-7.165.33-.468zM18.995 7.767c1.498 1.498 2.322 3.49 2.322 5.608s-.825 4.11-2.322 5.608c-1.498 1.498-3.49 2.322-5.608 2.322s-4.11-.825-5.608-2.322c-1.498-1.498-2.322-3.49-2.322-5.608s.825-4.11 2.322-5.608c1.498-1.498 3.49-2.322 5.608-2.322s4.11.825 5.608 2.322z"/></svg>
+        <span class="icon__fallback-text">Search</span>
+      </button>
+    </form>
+    <ul class="drawer__nav">
+      
+        
+
+        
+          <li class="drawer__nav-item">
+            <a href="/"
+              class="drawer__nav-link drawer__nav-link--top-level"
+              
+            >
+              Home
+            </a>
+          </li>
+        
+      
+        
+
+        
+          <li class="drawer__nav-item">
+            <a href="/collections/all"
+              class="drawer__nav-link drawer__nav-link--top-level"
+              
+            >
+              Catalog
+            </a>
+          </li>
+        
+      
+        
+
+        
+          <li class="drawer__nav-item">
+            <a href="/blogs/news"
+              class="drawer__nav-link drawer__nav-link--top-level"
+               aria-current="page"
+            >
+              News
+            </a>
+          </li>
+        
+      
+
+      
+    </ul>
+  </div>
+</div>
+
+<header class="site-header page-element is-moved-by-drawer" role="banner" data-section-id="header" data-section-type="header">
+  <div class="site-header__upper page-width">
+    <div class="grid grid--table">
+      <div class="grid__item small--one-quarter medium-up--hide">
+        <button type="button" class="text-link site-header__link js-drawer-open-left">
+          <span class="site-header__menu-toggle--open">
+            <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-hamburger" viewBox="0 0 32 32"><path fill="#444" d="M4.889 14.958h22.222v2.222H4.889v-2.222zM4.889 8.292h22.222v2.222H4.889V8.292zM4.889 21.625h22.222v2.222H4.889v-2.222z"/></svg>
+          </span>
+          <span class="site-header__menu-toggle--close">
+            <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-close" viewBox="0 0 32 32"><path fill="#444" d="M25.313 8.55l-1.862-1.862-7.45 7.45-7.45-7.45L6.689 8.55l7.45 7.45-7.45 7.45 1.862 1.862 7.45-7.45 7.45 7.45 1.862-1.862-7.45-7.45z"/></svg>
+          </span>
+          <span class="icon__fallback-text">Site navigation</span>
+        </button>
+      </div>
+      <div class="grid__item small--one-half medium-up--two-thirds small--text-center">
+        
+          <div class="site-header__logo h1" itemscope itemtype="http://schema.org/Organization">
+        
+          
+            
+            <a href="/" itemprop="url" >ShopiTobi</a>
+          
+        
+          </div>
+        
+      </div>
+
+      <div class="grid__item small--one-quarter medium-up--one-third text-right">
+        <div id="SiteNavSearchCart" class="site-header__search-cart-wrapper">
+          <form action="/search" method="get" class="site-header__search small--hide" role="search">
+            
+              <label for="SiteNavSearch" class="visually-hidden">Search</label>
+              <input type="search" name="q" id="SiteNavSearch" placeholder="Search" aria-label="Search" class="site-header__search-input">
+
+            <button type="submit" class="text-link site-header__link site-header__search-submit">
+              <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-search" viewBox="0 0 32 32"><path fill="#444" d="M21.839 18.771a10.012 10.012 0 0 0 1.57-5.39c0-5.548-4.493-10.048-10.034-10.048-5.548 0-10.041 4.499-10.041 10.048s4.493 10.048 10.034 10.048c2.012 0 3.886-.594 5.456-1.61l.455-.317 7.165 7.165 2.223-2.263-7.158-7.165.33-.468zM18.995 7.767c1.498 1.498 2.322 3.49 2.322 5.608s-.825 4.11-2.322 5.608c-1.498 1.498-3.49 2.322-5.608 2.322s-4.11-.825-5.608-2.322c-1.498-1.498-2.322-3.49-2.322-5.608s.825-4.11 2.322-5.608c1.498-1.498 3.49-2.322 5.608-2.322s4.11.825 5.608 2.322z"/></svg>
+              <span class="icon__fallback-text">Search</span>
+            </button>
+          </form>
+
+          <a href="/cart" class="site-header__link site-header__cart">
+            <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-cart" viewBox="0 0 31 32"><path d="M14.568 25.629c-1.222 0-2.111.889-2.111 2.111 0 1.111 1 2.111 2.111 2.111 1.222 0 2.111-.889 2.111-2.111s-.889-2.111-2.111-2.111zm10.22 0c-1.222 0-2.111.889-2.111 2.111 0 1.111 1 2.111 2.111 2.111 1.222 0 2.111-.889 2.111-2.111s-.889-2.111-2.111-2.111zm2.555-3.777H12.457L7.347 7.078c-.222-.333-.555-.667-1-.667H1.792c-.667 0-1.111.444-1.111 1s.444 1 1.111 1h3.777l5.11 14.885c.111.444.555.666 1 .666h15.663c.555 0 1.111-.444 1.111-1 0-.666-.555-1.111-1.111-1.111zm2.333-11.442l-18.44-1.555h-.111c-.555 0-.777.333-.667.889l3.222 9.22c.222.555.889 1 1.444 1h13.441c.555 0 1.111-.444 1.222-1l.778-7.443c.111-.555-.333-1.111-.889-1.111zm-2 7.443H15.568l-2.333-6.776 15.108 1.222-.666 5.554z"/></svg>
+            <span class="icon__fallback-text">Cart</span>
+            <span class="site-header__cart-indicator hide"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="StickNavWrapper">
+    <div id="StickyBar" class="sticky">
+      <nav class="nav-bar small--hide" role="navigation" id="StickyNav">
+        <div class="page-width">
+          <div class="grid grid--table">
+            <div class="grid__item seven-eighths" id="SiteNavParent">
+              <button type="button" class="hide text-link site-nav__link site-nav__link--compressed js-drawer-open-left" id="SiteNavCompressed">
+                <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-hamburger" viewBox="0 0 32 32"><path fill="#444" d="M4.889 14.958h22.222v2.222H4.889v-2.222zM4.889 8.292h22.222v2.222H4.889V8.292zM4.889 21.625h22.222v2.222H4.889v-2.222z"/></svg>
+                <span class="site-nav__link-menu-label">Menu</span>
+                <span class="icon__fallback-text">Site navigation</span>
+              </button>
+              <ul class="site-nav list--inline" id="SiteNav">
+                
+                  
+
+                  
+                  
+                  
+                  
+
+                  
+
+                  
+                  
+
+                  
+                    <li class="site-nav__item">
+                      <a href="/" class="site-nav__link">
+                        Home
+                      </a>
+                    </li>
+                  
+                
+                  
+
+                  
+                  
+                  
+                  
+
+                  
+
+                  
+                  
+
+                  
+                    <li class="site-nav__item">
+                      <a href="/collections/all" class="site-nav__link">
+                        Catalog
+                      </a>
+                    </li>
+                  
+                
+                  
+
+                  
+                  
+                  
+                  
+
+                  
+
+                  
+                  
+
+                  
+                    <li class="site-nav__item site-nav--active">
+                      <a href="/blogs/news" class="site-nav__link" aria-current="page">
+                        News
+                      </a>
+                    </li>
+                  
+                
+              </ul>
+            </div>
+            <div class="grid__item one-eighth text-right">
+              <div class="sticky-only" id="StickyNavSearchCart"></div>
+              
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="NotificationSuccess" class="notification notification--success" aria-hidden="true">
+        <div class="page-width notification__inner notification__inner--has-link">
+          <a href="/cart" class="notification__link">
+            <span class="notification__message">Item added to cart. <span>View cart and check out</span>.</span>
+          </a>
+          <button type="button" class="text-link notification__close">
+            <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-close" viewBox="0 0 32 32"><path fill="#444" d="M25.313 8.55l-1.862-1.862-7.45 7.45-7.45-7.45L6.689 8.55l7.45 7.45-7.45 7.45 1.862 1.862 7.45-7.45 7.45 7.45 1.862-1.862-7.45-7.45z"/></svg>
+            <span class="icon__fallback-text">Close</span>
+          </button>
+        </div>
+      </div>
+      <div id="NotificationError" class="notification notification--error" aria-hidden="true">
+        <div class="page-width notification__inner">
+          <span class="notification__message notification__message--error" aria-live="assertive" aria-atomic="true"></span>
+          <button type="button" class="text-link notification__close">
+            <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-close" viewBox="0 0 32 32"><path fill="#444" d="M25.313 8.55l-1.862-1.862-7.45 7.45-7.45-7.45L6.689 8.55l7.45 7.45-7.45 7.45 1.862 1.862 7.45-7.45 7.45 7.45 1.862-1.862-7.45-7.45z"/></svg>
+            <span class="icon__fallback-text">Close</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+</header>
+
+
+</div>
+
+  <div class="page-container page-element is-moved-by-drawer">
+    <main class="main-content" id="MainContent" role="main">
+      <div class="page-width">
+  <article itemscope itemtype="http://schema.org/Article" class="grid">
+
+    <div class="grid__item">
+      
+
+      <div id="shopify-section-article-content" class="shopify-section">
+
+
+
+
+<div class="content-block">
+
+  
+    <div class="content-block__full-image content-block__full-image--large">
+      <noscript>
+        <img src="//cdn.shopify.com/s/files/1/0578/0766/7375/articles/2_170a5a58-fe92-40b8-b0dd-8e1c8a32f7d2_1024x1024.jpg?v=1623844274" alt="Plantas medicinales para tratar las articulaciones" />
+      </noscript>
+      <div class="article__photo-container">
+        <div class="article__photo-wrapper" style="padding-top:99.79979979979979%;">
+        
+          <img class="lazyload"
+            src="//cdn.shopify.com/s/files/1/0578/0766/7375/articles/2_170a5a58-fe92-40b8-b0dd-8e1c8a32f7d2_300x300.jpg?v=1623844274"
+            data-src="//cdn.shopify.com/s/files/1/0578/0766/7375/articles/2_170a5a58-fe92-40b8-b0dd-8e1c8a32f7d2_{width}x.jpg?v=1623844274"
+            data-widths="[360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+            data-aspectratio="1.0020060180541626"
+            data-sizes="auto"
+            alt="Plantas medicinales para tratar las articulaciones">
+        </div>
+      </div>
+    </div>
+  
+
+  <p class="blog__meta">
+    
+    <time datetime="2021-06-15T15:14:32Z">June 15, 2021</time>
+  </p>
+
+  <h1 class="h2">Plantas medicinales para tratar las articulaciones</h1>
+
+  <div class="rte rte--indented-images" itemprop="articleBody">
+    <p><img src="https://cdn.shopify.com/s/files/1/0578/0766/7375/files/323_480x480.jpg?v=1623843797" alt=""></p>
+<h3>La reina de los prados</h3>
+<p>Menos conocida, pero muy útil también es esta planta herbácea, perenne, perteneciente a la familia de las rosáceas. En fitoterapia, se utiliza por sus propiedades sobre la flexibilidad y movilidad de las articulaciones. Como planta medicinal<span> </span><strong>se puede tomar en infusión</strong><span> </span>de las sumidades floridas frescas o secas (que se recolectan entre mayo y agosto), aunque es mejor secarlas si se quiere tomar durante el resto del año.</p>
+<p><img src="https://cdn.shopify.com/s/files/1/0578/0766/7375/files/3232_480x480.jpg?v=1623843844" alt=""></p>
+<h3>Árnica</h3>
+<p>La farmacéutica nos confirma que se trata de antiinflamatorio muy eficaz. Es la gran aliada del deportista y la más eficaz de entre los antiinflamatorios de uso externo. Es muy habitual utilizarla para aplicar sobre golpes, dolores, hematomas e hinchazones porque tiene efectos antiinflamatorias y analgésicos y estimula la circulación sanguínea. Además, presenta efectos analgésicos, antisépticos y cicatrizantes. Se aplica sólo por vía externa en preparados tópicos y cremas.</p>
+<p><img src="https://cdn.shopify.com/s/files/1/0578/0766/7375/files/fb83e67aacff701213f67d8c414c95f7_480x480.jpg?v=1623843891" alt=""></p>
+<h3>Cúrcuma</h3>
+<p>Es una planta de la familia del jengibre que se utiliza en Asia desde hace siglos. Su rizoma contribuye a mantener la flexibilidad y el bienestar articular. Mar Sieira nos da una recomendación para aprovechar aún más sus beneficios: si se asocia a la pimienta negra potencia su absorción, y por tanto su actividad. Y, además, también puedes encontrar<strong><a href="https://www.hola.com/estar-bien/20170309111200/propiedades-beneficios-curcuma/"><span> </span>la cúrcuma</a></strong><span> </span>asociada al jengibre en infusión.</p>
+<p><img src="https://cdn.shopify.com/s/files/1/0578/0766/7375/files/b228e404865a81e331be18f6cba5f70d_480x480.jpg?v=1623843938" alt=""></p>
+<h3>Ajo</h3>
+<p>Este alimento, tan presente en nuestra cocina es rico en un compuesto llamado alicina, que sólo se forma cuando machacamos o partimos ajo crudo, por lo que, tal y como nos cuenta la experta, si se cocina antes de machacarlo, sus beneficios no serán los mismos. Este compuesto  ayuda a disminuir el líquido que se acumula en las articulaciones aliviando, de esta forma, el dolor.</p>
+  </div>
+
+  
+    <hr>
+    <!-- /snippets/social-sharing.liquid -->
+<div class="social-sharing grid medium-up--grid--table">
+  
+    <div class="grid__item medium-up--one-third medium-up--text-left">
+      <span class="social-sharing__title">Share</span>
+    </div>
+  
+  <div class="grid__item medium-up--two-thirds medium-up--text-right">
+    
+      <a target="_blank" href="//www.facebook.com/sharer.php?u=https://shopitobi.com/blogs/news/es-posible-paliar-el-dolor-cronico-articular" class="social-sharing__link share-facebook" title="Share on Facebook">
+        <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-facebook" viewBox="0 0 32 32"><path fill="#444" d="M18.222 11.556V8.91c0-1.194.264-1.799 2.118-1.799h2.326V2.667h-3.882c-4.757 0-6.326 2.181-6.326 5.924v2.965H9.333V16h3.125v13.333h5.764V16h3.917l.528-4.444h-4.444z"/></svg>
+        <span class="share-title visually-hidden">Share on Facebook</span>
+      </a>
+    
+
+    
+      <a target="_blank" href="//twitter.com/share?text=Plantas%20medicinales%20para%20tratar%20las%20articulaciones&amp;url=https://shopitobi.com/blogs/news/es-posible-paliar-el-dolor-cronico-articular" class="social-sharing__link share-twitter" title="Tweet on Twitter">
+        <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-twitter" viewBox="0 0 32 32"><path fill="#444" d="M30.75 6.844c-1.087.481-2.25.806-3.475.956a6.079 6.079 0 0 0 2.663-3.35 12.02 12.02 0 0 1-3.844 1.469A6.044 6.044 0 0 0 21.675 4a6.052 6.052 0 0 0-6.05 6.056c0 .475.05.938.156 1.381A17.147 17.147 0 0 1 3.306 5.106a6.068 6.068 0 0 0 1.881 8.088c-1-.025-1.938-.3-2.75-.756v.075a6.056 6.056 0 0 0 4.856 5.937 6.113 6.113 0 0 1-1.594.212c-.388 0-.769-.038-1.138-.113a6.06 6.06 0 0 0 5.656 4.206 12.132 12.132 0 0 1-8.963 2.507A16.91 16.91 0 0 0 10.516 28c11.144 0 17.231-9.231 17.231-17.238 0-.262-.006-.525-.019-.781a12.325 12.325 0 0 0 3.019-3.138z"/></svg>
+        <span class="share-title visually-hidden">Tweet on Twitter</span>
+      </a>
+    
+
+    
+      <a target="_blank" href="//pinterest.com/pin/create/button/?url=https://shopitobi.com/blogs/news/es-posible-paliar-el-dolor-cronico-articular&amp;media=//cdn.shopify.com/s/files/1/0578/0766/7375/articles/2_170a5a58-fe92-40b8-b0dd-8e1c8a32f7d2_1024x1024.jpg?v=1623844274&amp;description=Plantas%20medicinales%20para%20tratar%20las%20articulaciones" class="social-sharing__link share-pinterest" title="Pin on Pinterest">
+        <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-pinterest" viewBox="0 0 32 32"><path fill="#444" d="M16 2C8.269 2 2 8.269 2 16c0 5.731 3.45 10.656 8.381 12.825-.037-.975-.006-2.15.244-3.212l1.8-7.631s-.45-.894-.45-2.213c0-2.075 1.2-3.625 2.7-3.625 1.275 0 1.887.956 1.887 2.1 0 1.281-.819 3.194-1.238 4.969-.35 1.488.744 2.694 2.212 2.694 2.65 0 4.438-3.406 4.438-7.444 0-3.069-2.069-5.362-5.825-5.362-4.244 0-6.894 3.169-6.894 6.706 0 1.219.363 2.081.925 2.744.256.306.294.431.2.781-.069.256-.219.875-.287 1.125-.094.356-.381.481-.7.35-1.956-.8-2.869-2.938-2.869-5.35 0-3.975 3.356-8.744 10.006-8.744 5.344 0 8.863 3.869 8.863 8.019 0 5.494-3.056 9.594-7.556 9.594-1.512 0-2.931-.819-3.419-1.744 0 0-.813 3.225-.988 3.85-.294 1.081-.875 2.156-1.406 3 1.256.369 2.588.575 3.969.575 7.731 0 14-6.269 14-14 .006-7.738-6.262-14.006-13.994-14.006z"/></svg>
+        <span class="share-title visually-hidden">Pin on Pinterest</span>
+      </a>
+    
+  </div>
+</div>
+
+  
+</div>
+
+
+
+
+
+
+</div>
+
+      <div id="shopify-section-featured-products-subsection" class="shopify-section">
+</div>
+
+      <div class="full-width full-width--return-link">
+        <a href="/blogs/news" class="h1 return-link">
+          <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-arrow-thin-left" viewBox="0 0 32 32"><path fill="#444" d="M10.253 24.134c.269-.269.26-.694 0-.981l-5.764-6.458h24.705c.382 0 .694-.313.694-.694s-.313-.694-.694-.694H4.489l5.755-6.458c.252-.295.278-.703.009-.972s-.738-.286-.99-.009c0 0-6.875 7.552-6.944 7.639s-.208.243-.208.495.139.425.208.495 6.944 7.639 6.944 7.639a.716.716 0 0 0 .99 0z"/></svg>
+          Back to News
+        </a>
+      </div>
+    </div>
+
+    
+
+  </article>
+</div>
+
+    </main>
+
+    <div id="shopify-section-footer" class="shopify-section"><footer class="site-footer" role="contentinfo">
+  <div class="page-width">
+    <div class="flex-footer">
+      
+        <div class="flex__item" >
+          
+              
+                <div class="site-footer__section">
+                  <h4 class="h1 site-footer__section-title">Footer menu</h4>
+                  <ul class="site-footer__list">
+                    
+                      <li class="site-footer__list-item"><a href="/search">Search</a></li>
+                    
+                      <li class="site-footer__list-item"><a href="/policies/privacy-policy">Privacy Policy</a></li>
+                    
+                      <li class="site-footer__list-item"><a href="/policies/refund-policy">Refund Policy</a></li>
+                    
+                      <li class="site-footer__list-item"><a href="/policies/terms-of-service">Terms of Service</a></li>
+                    
+                  </ul>
+                </div>
+              
+
+            
+        </div>
+      
+    </div>
+  </div>
+  <div class="site-footer__copyright">
+    <div class="page-width">
+      <div class="grid medium-up--grid--table">
+        <div class="grid__item medium-up--one-half">
+          <small>&copy; 2021, <a href="/" title="">ShopiTobi</a>. <a target="_blank" rel="nofollow" href="https://www.shopify.com?utm_campaign=poweredby&amp;utm_medium=shopify&amp;utm_source=onlinestore">Powered by Shopify</a></small>
+        </div>
+        <div class="grid__item medium-up--one-half medium-up--text-right"><span class="visually-hidden">Payment methods</span>
+              <ul class="list--inline payment-icons"><li>
+                    <svg class="icon icon--full-color" viewBox="0 0 38 24" xmlns="http://www.w3.org/2000/svg" width="38" height="24" role="img" aria-labelledby="pi-paypal"><title id="pi-paypal">PayPal</title><path opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z"/><path fill="#fff" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32"/><path fill="#003087" d="M23.9 8.3c.2-1 0-1.7-.6-2.3-.6-.7-1.7-1-3.1-1h-4.1c-.3 0-.5.2-.6.5L14 15.6c0 .2.1.4.3.4H17l.4-3.4 1.8-2.2 4.7-2.1z"/><path fill="#3086C8" d="M23.9 8.3l-.2.2c-.5 2.8-2.2 3.8-4.6 3.8H18c-.3 0-.5.2-.6.5l-.6 3.9-.2 1c0 .2.1.4.3.4H19c.3 0 .5-.2.5-.4v-.1l.4-2.4v-.1c0-.2.3-.4.5-.4h.3c2.1 0 3.7-.8 4.1-3.2.2-1 .1-1.8-.4-2.4-.1-.5-.3-.7-.5-.8z"/><path fill="#012169" d="M23.3 8.1c-.1-.1-.2-.1-.3-.1-.1 0-.2 0-.3-.1-.3-.1-.7-.1-1.1-.1h-3c-.1 0-.2 0-.2.1-.2.1-.3.2-.3.4l-.7 4.4v.1c0-.3.3-.5.6-.5h1.3c2.5 0 4.1-1 4.6-3.8v-.2c-.1-.1-.3-.2-.5-.2h-.1z"/></svg>
+                  </li></ul></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</div>
+  </div>
+
+  <script id="QuantityTemplate" type="text/template">
+    
+      <div class="js-qty">
+        <input type="text" value="{{ value }}" id="{{ key }}" name="{{ name }}" pattern="[0-9]*" data-line="{{ line }}" class="js-qty__input" aria-live="polite">
+        <button type="button" class="js-qty__adjust js-qty__adjust--minus" aria-label="Reduce item quantity by one">
+          <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon--wide icon-minus" viewBox="0 0 22 3"><path fill="#000" d="M21.5.5v2H.5v-2z" fill-rule="evenodd"/></svg>
+          <span class="icon__fallback-text">−</span>
+        </button>
+        <button type="button" class="js-qty__adjust js-qty__adjust--plus" aria-label="Increase item quantity by one">
+          <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-plus" viewBox="0 0 22 21"><path d="M12 11.5h9.5v-2H12V0h-2v9.5H.5v2H10V21h2v-9.5z" fill="#000" fill-rule="evenodd"/></svg>
+          <span class="icon__fallback-text">+</span>
+        </button>
+      </div>
+    
+  </script>
+
+  
+
+  <ul hidden>
+    <li id="a11y-refresh-page-message">Choosing a selection results in a full page refresh.</li>
+    <li id="a11y-selection-message">Press the space key then arrow keys to make a selection.</li>
+    <li id="a11y-slideshow-info">Use left/right arrows to navigate the slideshow or swipe left/right if using a mobile device</li>
+  </ul>
+  <script>setTimeout(function(){const load = document.querySelector('.loader'); load.className += ' hidden';}, 3000)</script>
+</body>
+  
+</html>
